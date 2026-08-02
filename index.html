@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MordsSchweinerei – Das Brettspiel</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: rgba(255, 255, 255, 0.09);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #f59e0b;
+      --accent-2: #22d3ee;
+      --danger: #9b0a0a;
+      --dark: #020617;
+      --logo1: #ffffff;
+      --logo2: #ffa2f6;
+      --radius: 24px;
+      --shadow: 0 24px 70px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(34,211,238,.25), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(245,158,11,.22), transparent 30%),
+        linear-gradient(135deg, #020617 0%, #0f172a 55%, #111827 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { line-height: 1.08; margin: 0 }
+    p { margin-top: 0.5em }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(2,6,23,.72);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: 1.2rem;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--logo1), var(--logo2));
+      color: #020617;
+      box-shadow: 0 10px 30px rgba(34,211,238,.28);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+    .menu a:hover { color: white; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 22px;
+      background: linear-gradient(135deg, var(--accent), #f97316);
+      color: #111827;
+      font-weight: 900;
+      box-shadow: 0 16px 45px rgba(245,158,11,.28);
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 18px 55px rgba(245,158,11,.4); }
+
+    .hero {
+      max-width: 1180px;
+      margin: auto;
+      min-height: 78vh;
+      padding: 72px 24px 58px;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: #fde68a;
+      background: rgba(245,158,11,.12);
+      border: 1px solid rgba(245,158,11,.28);
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(1.8rem, 5vw, 4.2rem);
+      letter-spacing: -.08em;
+    }
+    h1 span { color: var(--danger); }
+    .lead {
+      margin: 24px 0 0;
+      max-width: 1180px;
+      color: var(--muted);
+      font-size: 1.18rem;
+    }
+
+     .lead2 {
+      margin: 24px 0 0;
+      max-width: 1180px;
+      color: var(--muted);
+      font-size: 1.18rem;
+      font-style: italic;
+    }
+
+    .split-graphic {
+      position: relative;
+      min-height: 470px;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.06);
+      isolation: isolate;
+    }
+    .split-graphic::before,
+    .split-graphic::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+    .split-graphic::before {
+      clip-path: polygon(0 0, 72% 0, 38% 100%, 0 100%);
+      background:
+        radial-gradient(circle at 25% 20%, rgba(239,68,68,.45), transparent 28%),
+        linear-gradient(135deg, #431407, #7f1d1d 55%, #020617);
+    }
+    .split-graphic::after {
+      clip-path: polygon(72% 0, 100% 0, 100% 100%, 38% 100%);
+      background:
+        radial-gradient(circle at 74% 74%, rgba(34,211,238,.45), transparent 30%),
+        linear-gradient(135deg, #020617, #164e63 54%, #172554);
+    }
+    .role {
+      position: absolute;
+      max-width: 255px;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(2,6,23,.55);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(14px);
+    }
+    .role.murderer { left: 28px; top: 34px; }
+    .role.detectives { right: 28px; bottom: 34px; }
+    .role-icon { font-size: 3rem; margin-bottom: 12px; }
+    .role h3 { font-size: 1.45rem; }
+    .role p { color: var(--muted); margin: 10px 0 0; }
+    .divider-line {
+      position: absolute;
+      inset: -12% auto -12% 52%;
+      width: 4px;
+      transform: rotate(18deg);
+      background: linear-gradient(transparent, rgba(255,255,255,.55), transparent);
+      box-shadow: 0 0 38px rgba(255,255,255,.32);
+    }
+
+    section { max-width: 1180px; margin: auto; padding: 78px 24px; }
+    .section-head { max-width: 790px; margin-bottom: 34px; }
+    .section-head p, .card p, li { color: var(--muted); }
+    h2 { font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -.05em; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .card {
+      padding: 26px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 40px rgba(0,0,0,.18);
+    }
+    .feature-card { min-height: 250px; }
+    .icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 18px;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, rgba(245,158,11,.25), rgba(34,211,238,.18));
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .project-wrap {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .setup-graphic {
+      min-height: 430px;
+      border-radius: 34px;
+      padding: 26px;
+      background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+    }
+    .board-illustration {
+      position: relative;
+      width: min(100%, 420px);
+      aspect-ratio: 1;
+      border-radius: 30px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        radial-gradient(circle at 30% 30%, rgba(245,158,11,.5), transparent 13%),
+        radial-gradient(circle at 70% 67%, rgba(34,211,238,.45), transparent 14%),
+        linear-gradient(135deg, #172554, #1e293b 55%, #431407);
+      background-size: 56px 56px, 56px 56px, auto, auto, auto;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+    }
+    .meeple, .card-stack, .clue-token {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 16px 34px rgba(0,0,0,.34);
+    }
+    .meeple {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--accent); color: #111827; font-size: 1.6rem;
+    }
+    .meeple.one { left: 18%; top: 20%; }
+    .meeple.two { right: 18%; top: 42%; background: var(--accent-2); }
+    .meeple.three { left: 44%; bottom: 14%; background: #a78bfa; }
+    .card-stack {
+      right: -16px; top: 30px; width: 88px; height: 120px; border-radius: 16px;
+      background: linear-gradient(135deg, #f8fafc, #cbd5e1); color: #0f172a; font-weight: 900;
+      transform: rotate(8deg);
+    }
+    .clue-token {
+      left: -14px; bottom: 42px; width: 86px; height: 86px; border-radius: 22px;
+      background: rgba(2,6,23,.82); border: 1px solid rgba(255,255,255,.16); font-size: 2rem;
+    }
+    .project-card ul, .signup-card ul { margin: 18px 0 0; padding-left: 22px; }
+    .project-card li, .signup-card li { margin-bottom: 12px; }
+
+    .signup {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      align-items: center;
+      gap: 28px;
+      padding: 38px;
+      border-radius: 34px;
+      background: linear-gradient(135deg, rgba(245,158,11,.17), rgba(34,211,238,.13));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+    }
+    .signup .btn {
+      width: 100%;
+      min-height: 72px;
+      font-size: 1.25rem;
+    }
+
+    footer {
+      padding: 34px 24px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      color: var(--muted);
+      text-align: center;
+      background: rgba(2,6,23,.35);
+    }
+
+    @media (max-width: 960px) {
+      .hero, .project-wrap, .signup { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr 1fr; }
+      .menu { display: none; }
+      .hero { padding-top: 42px; }
+    }
+    @media (max-width: 580px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .split-graphic { min-height: 590px; }
+      .role { max-width: calc(100% - 46px); }
+      .role.detectives { left: 23px; right: 23px; }
+      .setup-graphic { min-height: 340px; }
+      .signup { padding: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#start" aria-label="Chrono Crime Startseite">
+        <span class="logo-mark">🐽</span>
+        <span>MordsSchweinerei</span>
+      </a>
+      
+  </nav>
+
+  <main id="start" class="hero">
+    <div>
+      <span class="eyebrow">Social Deduction Brettspiel mit Schweinen · 4–8 Spieler:innen · Website im Aufbau</span>
+      <h1>Ein frischer Tatort. Zahlreiche Spuren. <br> Und ein <span>Mörder</span> in eurer Mitte.</h1>
+      <p class="lead">Eigentlich sollte es eine vornehme Spendengala werden. Doch als ihr in der Villa eintrefft, liegt der Gastgeber tot auf dem teuren Eichenholzparkett - ermordet! Schnell steht fest: Sein Mörder befindet sich unter euch, macht gute Miene zum bösen Spiel und lässt nichts unversucht, seine Spuren zu verwischen und den Verdacht von sich zu lenken. Gelingt es euch, die Spuren am Tatort richtig zu lesen und dem Täter gemeinsam das Handwerk zu legen, bevor es zu spät ist?</p>
+      <p class="lead2">MordsSchweinerei ist ein privates Projekt des Spieleautors Tim Schmidtlein. Weitere Details folgen hier in Kürze, stay tuned!</p>
+    </div>
+
+  </main>    
+
+  <footer>
+    © 2026 MordsSchweinerei · Tim Schmidtlein
+  </footer>
+</body>
+</html>
