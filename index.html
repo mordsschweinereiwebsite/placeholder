@@ -108,7 +108,7 @@
       min-height: 78vh;
       padding: 72px 24px 58px;
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
       gap: 48px;
     }
@@ -134,17 +134,9 @@
     h1 span { color: var(--danger); }
     .lead {
       margin: 24px 0 0;
-      max-width: 1180px;
+      max-width: 620px;
       color: var(--muted);
       font-size: 1.18rem;
-    }
-
-     .lead2 {
-      margin: 24px 0 0;
-      max-width: 1180px;
-      color: var(--muted);
-      font-size: 1.18rem;
-      font-style: italic;
     }
 
     .split-graphic {
@@ -248,15 +240,13 @@
     .board-illustration {
       position: relative;
       width: min(100%, 420px);
-      aspect-ratio: 1;
+      aspect-ratio: 1536/1024;
       border-radius: 30px;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
-        radial-gradient(circle at 30% 30%, rgba(245,158,11,.5), transparent 13%),
-        radial-gradient(circle at 70% 67%, rgba(34,211,238,.45), transparent 14%),
-        linear-gradient(135deg, #172554, #1e293b 55%, #431407);
-      background-size: 56px 56px, 56px 56px, auto, auto, auto;
+      background-image: url('Illustration.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
     }
     .meeple, .card-stack, .clue-token {
@@ -307,6 +297,7 @@
       color: var(--muted);
       text-align: center;
       background: rgba(2,6,23,.35);
+      font-size:10px;
     }
 
     @media (max-width: 960px) {
@@ -328,25 +319,107 @@
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <a class="logo" href="#start" aria-label="Chrono Crime Startseite">
+      <a class="logo" href="#start" aria-label="MordsSchweinerei Startseite">
         <span class="logo-mark">🐽</span>
         <span>MordsSchweinerei</span>
       </a>
-      
+      <div class="menu" aria-label="Hauptnavigation">
+        <a href="#start">Summary</a>
+        <a href="#spiel">Highlights</a>
+        <a href="#projekt">Projekt</a>
+        <a href="#vormerken">Jetzt vormerken</a>
+      </div>
+      <a class="btn" href="#vormerken">Jetzt vormerken</a>
+    </div>
   </nav>
 
   <main id="start" class="hero">
     <div>
-      <span class="eyebrow">Social Deduction Brettspiel mit Schweinen · 4–8 Spieler:innen · Website im Aufbau</span>
-      <h1>Ein frischer Tatort. Zahlreiche Spuren. <br> Und ein <span>Mörder</span> in eurer Mitte.</h1>
+      <span class="eyebrow">Social Deduction · Krimi mit Schweinen · 4–8 Spieler:innen</span>
+      <h1>Ein frischer Tatort. Zahlreiche Spuren. Und ein <span>Mörder</span> in eurer Mitte.</h1>
       <p class="lead">Eigentlich sollte es eine vornehme Spendengala werden. Doch als ihr in der Villa eintrefft, liegt der Gastgeber tot auf dem teuren Eichenholzparkett - ermordet! Schnell steht fest: Sein Mörder befindet sich unter euch, macht gute Miene zum bösen Spiel und lässt nichts unversucht, seine Spuren zu verwischen und den Verdacht von sich zu lenken. Gelingt es euch, die Spuren am Tatort richtig zu lesen und dem Täter gemeinsam das Handwerk zu legen, bevor es zu spät ist?</p>
-      <p class="lead2">MordsSchweinerei ist ein privates Projekt des Spieleautors Tim Schmidtlein. Weitere Details folgen hier in Kürze, stay tuned!</p>
     </div>
 
-  </main>    
+    <div class="split-graphic" aria-label="Diagonale Grafik zu Mörder und Ermittlern">
+      <div class="divider-line"></div>
+      <article class="role murderer">
+        <div class="role-icon">🔪</div>
+        <h3>Als Mörder</h3>
+        <p>Bluffe, stifte Verwirrung und manipuliere heimlich den Tatort, um den Verdacht von dir abzulenken.</p>
+      </article>
+      <article class="role detectives">
+        <div class="role-icon">🔎</div>
+        <h3>Als Unschuldiger</h3>
+        <p>Trage Indizien zusammen, kombiniere sie mit den Aussagen der übrigen Gäste und entlarve den Täter, bevor es zu spät ist.</p>
+      </article>
+    </div>
+  </main>
+
+  <section id="spiel">
+    <div class="section-head">
+      <h2>Was MordsSchweinerei auszeichnet</h2>
+      <p>Ein schnelles Social Deduction Game, in dem Ermittlungstaktik, logisches Kombinieren und Kommunikation gefragt sind. </p>
+    </div>
+    <div class="feature-grid">
+      <article class="card feature-card">
+        <div class="icon">⚙️</div>
+        <h3>Einzigartige Mechanik</h3>
+        <p>Die innovative Kombination aus klassischem Detektivspiel und Social Deduction sowie verschiedenen Hidden Action und Memory Elementen schafft ein ganz neues und faszinierendes Spielgefühl. Testspieler fühlen sich erinnert an eine Mischung aus Cluedo, Werwölfe und Scotland Yard.</p>
+      </article>
+      <article class="card feature-card">
+        <div class="icon">🎭</div>
+        <h3>Einer gegen Alle</h3>
+        <p>Vordergründig verfolgt ihr alle dasselbe Ziel, doch insgeheim versucht einer euch alle an der Nase herumzuführen. Wem könnt ihr vertrauen und bei wem solltet ihr lieber vorsichtig sein?</p>
+      </article>
+      <article class="card feature-card">
+        <div class="icon">🔄</div>
+        <h3>Dynamischer Tatort</h3>
+        <p>Spuren verschwinden oder werden heimlich manipuliert, einzelne Orte sind plötzlich für Ermittlungen gesperrt oder werden für alle sichtbar aufgedeckt. Behaltet den Überblick und lasst euch nicht verwirren.</p>
+      </article>
+      <article class="card feature-card">
+        <div class="icon">⚡</div>
+        <h3>Schnelle Spannung</h3>
+        <p>Kurze Züge, klare Aktionen und eine Begrenzung auf maximal 12 Spielrunden garantieren schnelle und kurzweilige Partien, bei denen jeder bis zum Ende voll involviert ist.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="projekt">
+    <div class="project-wrap">
+      <div class="setup-graphic" aria-label="Illustration von Spielbrett und Setup">
+        <div class="board-illustration">
+        </div>
+      </div>
+      <article class="card project-card">
+        <h2>Das Projekt</h2>
+        <ul>
+          <li><strong>Aktueller Status:</strong> Spielanleitung und vollständig spielbarer Prototyp sind fertig, erste Testspiele bereits erfolgt</li>
+          <li><strong>Next Steps:</strong> Finetuning mit weiteren Testspielgruppen, Präsentation auf diversen Messen & Spieletreffen in 2026</li>
+          <li style="color: gold;"><strong>Komm vorbei:</strong> MordsSchweinerei ist bei der Spielwiesn 2026 dabei, vom 06.-08.11. in Augsburg!</li>
+          <li><strong>Ausblick:</strong> Veröffentlichung geplant für 2027 -> stay tuned!</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="vormerken">
+    <div class="signup">
+      <div>
+        <a class="btn" href="mailto:info@mordsschweinerei.de?subject=Newsletter%20Registrierung%20MordsSchweinerei&body=Bitte%20füge%20mich%20zum%MordsSchweinerei%20Newsletter%20hinzu.">Jetzt vormerken</a>
+      </div>
+      <article class="signup-card">
+        <h2>Erfahre als Erster, wie es weitergeht</h2>
+        <ul>
+          <li>Infos über künftige Messen & Präsentationstermine, bei denen du MordsSchweinerei kennenlernen kannst</li>
+          <li>Exklusive Einblicke in Spielmaterial, Regelwerk und Playtests</li>
+          <li>Frühzeitige Benachrichtigung, sobald Kickstarter Kampagne bzw. Pre-Sale starten</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
   <footer>
-    © 2026 MordsSchweinerei · Tim Schmidtlein
+    © 2026 MordsSchweinerei · Tim Schmidtlein · Handwerker Str. 11, 66740 Saarlouis
   </footer>
 </body>
 </html>
