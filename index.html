@@ -508,7 +508,7 @@
     const submitButton = document.getElementById('submitButton');
     const successPanel = document.getElementById('successPanel');
     const privacyModal = document.getElementById('privacyModal');
-    const SUBSCRIBE_ENDPOINT = '/api/subscribe'; // Hier später Backend/Newsletter-Integration anschließen.
+    const SUBSCRIBE_ENDPOINT = 'https://shiny-mountain-90b0.tim-schmidtlein.workers.dev/'; // Hier später Backend/Newsletter-Integration anschließen.
 
     function openPrivacy() { privacyModal.classList.add('open'); }
     function closePrivacy() { privacyModal.classList.remove('open'); }
@@ -613,7 +613,7 @@
         formMessage.classList.add('success');
         formMessage.textContent = 'Fast geschafft – bitte bestätige jetzt noch deine E-Mail-Adresse über den Link in der E-Mail, die wir dir gerade gesendet haben.';
       } catch (error) {
-        formMessage.textContent = 'Die Vormerkung konnte noch nicht versendet werden. Verbinde /api/subscribe mit deinem Newsletter-Dienst oder Backend.';
+        formMessage.textContent = 'Das hat leider nicht geklappt. Bitte versuche es zu einem späteren Zeitpunkt erneut.';
       } finally {
         submitButton.disabled = false;
         submitButton.textContent = 'Jetzt vormerken';
