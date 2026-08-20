@@ -42,7 +42,15 @@
       top: 0;
       z-index: 10;
       backdrop-filter: blur(18px);
-      background: rgba(2,6,23,.72);
+      background: linear-gradient(
+          to bottom,
+          #3d3c3c 0%,
+          #f7f7f7 5%,
+          #ffffff 25%,
+          #ffffff 75%,
+          #f7f7f7 95%,
+          #3d3c3c 100%
+        );
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
@@ -57,12 +65,15 @@
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      letter-spacing: -.03em;
-      font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+    .logo img {
+        display: block;
+        width: 390px;      /* Größe nach Wunsch anpassen */
+        height: auto;
     }
 
     .logo-mark {
@@ -81,9 +92,10 @@
       align-items: center;
       gap: 18px;
       font-size: .95rem;
-      color: var(--muted);
+      font-weight: bold;
+      color: black;
     }
-    .menu a:hover { color: white; }
+    .menu a:hover { color: grey; }
 
     .btn {
       display: inline-flex;
@@ -228,7 +240,7 @@
       align-items: stretch;
     }
     .setup-graphic {
-      min-height: 430px;
+      min-height: 375px;
       border-radius: 34px;
       padding: 26px;
       background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
@@ -248,6 +260,16 @@
       background-repeat: no-repeat;
 
       box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+    }
+    .untertitel {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      padding: 10px;
+      color: white;
+      font-size: 8.5px;
     }
     .meeple, .card-stack, .clue-token {
       position: absolute;
@@ -355,8 +377,10 @@
   <nav class="nav">
     <div class="nav-inner">
       <a class="logo" href="#start" aria-label="MordsSchweinerei Startseite">
-        <span class="logo-mark">🐽</span>
-        <span>MordsSchweinerei</span>
+        <img
+        src="logo.png"
+        alt="Mordschweinerei"
+        >
       </a>
       <div class="menu" aria-label="Hauptnavigation">
         <a href="#start">Summary</a>
@@ -423,6 +447,7 @@
     <div class="project-wrap">
       <div class="setup-graphic" aria-label="Illustration von Spielbrett und Setup">
         <div class="board-illustration">
+          <span class="untertitel">Produktbild mithilfe von KI erstellt, basierend auf aktuellem Prototypen. Finales Produkt kann abweichen.</span>
         </div>
       </div>
       <article class="card project-card">
